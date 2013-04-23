@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Welcome to Rave List!</h1>
+  <span class="tagline"><blink>expand your possibilities...</blink></span>
+  <ul>
+    <% @categories.each do |category|%>
+      <li><a href="/category/<%= category.id%>"> <%= category.name %>  </a></li>
+    <% end%>
+  </ul>
+
+</div>
+
+<%= form_for Post.new, :controller => "posts", :action => "create", :class => "great_form" do |f| %>
+  <%= collection_select(:category, :category_id, Category.all, :id, :name) %>
+  <%= f.text_field :name %>
+  <%= f.text_field :description %>
+  <%= f.text_field :email %>
+  <%= f.submit "Create" %>
+<% end %>
